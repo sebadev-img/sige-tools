@@ -14,7 +14,7 @@ app.post("/extract-text", (req, res) => {
     res.end();
   }
   pdfParse(req.files.pdfFile).then((result) => {
-    res.send(result.text.trim);
+    res.send(result.text);
   });
 });
 
