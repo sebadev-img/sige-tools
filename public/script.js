@@ -8,6 +8,9 @@ btnUpload.disabled = true;
 
 const getUniqueDNI = (text) => {
   if (text) {
+    while (ul.firstChild) {
+      ul.removeChild(ul.firstChild);
+    }
     const textArray = text.split("\n");
     let dniArray = textArray.filter(
       (word) => word.length === 10 && !word.includes("/")
