@@ -8,12 +8,24 @@
     <title>SIGE-TOOL</title>
   </head>
   <body id="body">
-    <input type="file" id="inpFile" />
-    <button type="button" id="btnUpload">Obtener DNI</button>
-    <!-- <button type="button" id="btnDNI">DNI</button> -->
-    <br />
-    <br />
-    <ul id="ul"></ul>
+    <header>
+      <h1 class="header-title">SIGE-TOOLS</h1>
+    </header>
+    <main>
+      <section class="btn-container">
+        <input class="inputFile" type="file" id="inpFile" />
+        <label for="inpFile">Seleccionar PDF</label>
+        <span id="textFile">Ningun Archivo Seleccionado</span>
+        <button class="btn" type="button" id="btnUpload" disabled>
+          Obtener DNI
+        </button>
+        <br />
+        <br />
+      </section>
+      <section class="list-container">
+        <ul id="ul"></ul>
+      </section>
+    </main>
   </body>
   <script src="./script.js"></script>
 </html>

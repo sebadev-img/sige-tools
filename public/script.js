@@ -1,16 +1,14 @@
-//const body = document.getElementById("body");
 const inpFile = document.getElementById("inpFile");
+const textFile = document.getElementById("textFile");
 const btnUpload = document.getElementById("btnUpload");
-const btnDNI = document.getElementById("btnDNI");
 const resultText = document.getElementById("resultText");
 const ul = document.getElementById("ul");
-//let prueba = "";
+
+btnUpload.disabled = true;
 
 const getUniqueDNI = (text) => {
   if (text) {
-    //console.log(prueba);
     const textArray = text.split("\n");
-    //console.log(textArray);
     let dniArray = textArray.filter(
       (word) => word.length === 10 && !word.includes("/")
     );
@@ -21,10 +19,22 @@ const getUniqueDNI = (text) => {
     uniqueDNI.map((dni) => {
       const node = document.createElement("li");
       node.appendChild(document.createTextNode(dni));
+      node.addEventListener("click", () => {
+        node.classList.toggle("complete");
+      });
       ul.appendChild(node);
     });
   }
 };
+
+inpFile.addEventListener("change", () => {
+  if (inpFile.value) {
+    textFile.innerHTML = inpFile.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+    btnUpload.disabled = false;
+  } else {
+    textFile.innerHTML = "Ningun Archivo Seleccionado";
+  }
+});
 
 btnUpload.addEventListener("click", () => {
   const formData = new FormData();
@@ -37,7 +47,6 @@ btnUpload.addEventListener("click", () => {
       return response.text();
     })
     .then((extractedText) => {
-      //resultText.value = extractedText;
       getUniqueDNI(extractedText);
     });
 });
